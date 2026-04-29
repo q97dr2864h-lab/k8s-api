@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  main.py: |
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/health")
+    def health():
+        return {"status": "ok"}
+
+    @app.get("/users")
+    def users():
+        return [
+            {"id": 1, "name": "Jey"},
+            {"id": 2, "name": "Admin"}
+        ]
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"main.py":"from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/api/health\")\ndef health():\n    return {\"status\": \"ok\"}\n\n@app.get(\"/api/users\")\ndef users():\n    return [\n        {\"id\": 1, \"name\": \"Jey\"},\n        {\"id\": 2, \"name\": \"Admin\"}\n    ]\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"api-code","namespace":"default"}}
+  creationTimestamp: "2026-04-28T05:49:10Z"
+  name: api-code
+  namespace: default
+  resourceVersion: "34481"
+  uid: d95e0ddf-5b23-4e83-a6d0-3b8ac32989ed

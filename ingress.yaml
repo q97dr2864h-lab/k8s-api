@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"traefik.ingress.kubernetes.io/router.entrypoints":"web"},"name":"app-ingress","namespace":"default"},"spec":{"ingressClassName":"traefik","rules":[{"http":{"paths":[{"backend":{"service":{"name":"api","port":{"number":80}}},"path":"/health","pathType":"Prefix"},{"backend":{"service":{"name":"api","port":{"number":80}}},"path":"/users","pathType":"Prefix"},{"backend":{"service":{"name":"frontend","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  creationTimestamp: "2026-04-28T15:07:12Z"
+  generation: 2
+  name: app-ingress
+  namespace: default
+  resourceVersion: "34946"
+  uid: e270e495-e0e4-4a41-b099-a21f36985bb0
+spec:
+  ingressClassName: traefik
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: api
+            port:
+              number: 80
+        path: /health
+        pathType: Prefix
+      - backend:
+          service:
+            name: api
+            port:
+              number: 80
+        path: /users
+        pathType: Prefix
+      - backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.33.168
