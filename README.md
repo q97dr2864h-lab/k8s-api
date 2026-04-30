@@ -10,3 +10,4 @@ FastAPI running on Kubernetes with:
 Access:
 - /health
 - /users
+
