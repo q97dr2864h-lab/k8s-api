@@ -11,3 +11,5 @@ Access:
 - /health
 - /users
 
+# trigger ci
+# trigger pipeline after docker secrets fix
